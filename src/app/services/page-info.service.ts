@@ -9,24 +9,36 @@ export class PageInfoService {
   info: PageInfo = {};
   loaded = false;
 
+  workteam: any[] = [];
+
   constructor(private http: HttpClient) {
     console.log('PageInfo created successfully!'); // dbg
 
-    // // Leer el archivo JSON forma 1
+    this.loadInfo();
+    this.loadWorkTeam();
+
+    // // Leer el archivo JSON, forma 1
     // this.http.get('assets/data/page-data.json')
     //   .subscribe(response => {
     //     console.log(response); // dbg
     //     console.log(response['title' as keyof typeof response]); // dbg
     //   });
+  }
 
-    // Leer el archivo JSON forma 2
+  private loadInfo() {
+    // Leer el archivo JSON, forma 2
     this.http.get('assets/data/page-data.json')
       .subscribe((response: PageInfo) => {
-        console.log(response); // dbg
-        console.log(response.title); // dbg
-
         this.loaded = true;
         this.info = response;
+      });
+  }
+
+  private loadWorkTeam() {
+    this.http.get('https://angular-html-65294-default-rtdb.firebaseio.com/work_team.json')
+      .subscribe((response: any) => {
+        console.log(response); // dbg
+        this.workteam = response;
       });
   }
 }
