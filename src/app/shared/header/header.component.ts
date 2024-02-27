@@ -12,8 +12,6 @@ export class HeaderComponent {
               private router: Router) {}
 
   searchProduct(txt: string) {
-    console.log(txt); // dbg
-
     if (txt.length < 1) {
       return;
     }

@@ -12,7 +12,6 @@ export class PageInfoService {
   workteam: any[] = [];
 
   constructor(private http: HttpClient) {
-    console.log('PageInfo created successfully!'); // dbg
 
     this.loadInfo();
     this.loadWorkTeam();
@@ -37,7 +36,6 @@ export class PageInfoService {
   private loadWorkTeam() {
     this.http.get('https://angular-html-65294-default-rtdb.firebaseio.com/work_team.json')
       .subscribe((response: any) => {
-        console.log(response); // dbg
         this.workteam = response;
       });
   }

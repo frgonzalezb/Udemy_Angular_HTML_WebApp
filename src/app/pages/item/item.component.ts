@@ -17,11 +17,9 @@ export class ItemComponent {
 
   ngOnInit() {
     this.route.params.subscribe(parameters => {
-      console.log(parameters); // dbg
 
       this._product.getProduct(parameters['id'])
         .subscribe((product: ProductDescription) => {
-          console.log(product); // dbg
           this.id = parameters['id'];
           this.product = product;
       });
